@@ -15,312 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:ital,wght@0,300;0,400;0,700;1,300&display=swap"
         rel="stylesheet">
     <title>QUIZ 2</title>
-    <style>
-        * {
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        #root {
-            width: 670px;
-        }
-
-        .center {
-            margin: 0 auto;
-        }
-
-        .flex-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .flex-y-center {
-            align-items: center;
-        }
-
-
-        .header h1 {
-            height: 46px;
-            font-weight: 700;
-            font-size: 34px;
-            line-height: 46px;
-            text-align: center;
-            color: #170F49;
-        }
-
-        .header p {
-            width: 566.41px;
-            height: 70px;
-            font-size: 18px;
-            line-height: 30px;
-            text-align: center;
-
-            color: #6F6C90;
-        }
-
-        .form-title {
-            margin-bottom: 40px;
-        }
-
-        .form-title h2 {
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 35px;
-            color: #170F49;
-        }
-
-        .form-title p {
-            font-size: 18px;
-            line-height: 30px;
-            color: #6F6C90;
-        }
-
-        .inline-block {
-            display: inline-block;
-        }
-
-        .circle-primary {
-            width: 34px;
-            height: 34px;
-            background-color: #4A3AFF;
-            color: white;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 34px;
-            border-radius: 17px;
-            font-size: 16px;
-        }
-
-        .circle-gray {
-            width: 34px;
-            height: 34px;
-            height: 34px;
-            background-color: #EFF0F7;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 34px;
-            border-radius: 17px;
-            font-size: 16px;
-        }
-
-        .point-step {
-            width: 98.09px;
-            height: 6px;
-            background: #EFF0F7;
-            border-radius: 40px;
-            margin: 0 18px;
-        }
-
-        .point-step-active {
-            position: absolute;
-            width: 49.04px;
-            height: 6px;
-            background: #4A3AFF;
-            border-radius: 40px;
-        }
-
-        .background-primary {
-            background: #4A3AFF;
-
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .divider {
-            width: 596.26px;
-            height: 0px;
-            border: 1px solid #D9DBE9;
-        }
-
-        .space-x-1 {
-            width: 24px;
-        }
-
-        .space-x-6 {
-            width: 144px;
-        }
-
-        .space-y-1 {
-            height: 32px;
-        }
-
-        .space-y-2 {
-            height: 44px;
-        }
-
-        .step-container {
-            margin-left: 30px;
-        }
-
-        .form-container {
-            background: #FFFFFF;
-            border: 1px solid #EFF0F7;
-            box-shadow: 0px 5px 16px rgba(8, 15, 52, 0.06);
-            border-radius: 34px;
-            padding: 32px;
-            margin-top: 32px;
-        }
-
-        .form-field>* {
-            display: inline-block;
-        }
-
-        .form-field>label {
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 20px;
-            color: #170F49;
-            margin-bottom: 18px;
-        }
-
-        .form-field input {
-            background: #FFFFFF;
-            border: 1px solid #EFF0F7;
-            box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
-            border-radius: 46px;
-            width: 284px;
-            height: 66px;
-            text-indent: 20px;
-        }
-
-        input::placeholder {
-            font-family: 'DM Sans';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-            color: #6F6C90;
-        }
-
-        input {
-            box-sizing: border-box;
-            font-family: 'DM Sans';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-            color: #000;
-            padding-right: 60px;
-        }
-
-        .float-right {
-            float: right;
-        }
-
-        .button-secondary {
-            padding: 19px 40px 21px;
-            height: 60px;
-            border: 1px solid #4A3AFF;
-            border-radius: 66px;
-            background-color: white;
-
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-            text-align: center;
-            color: #4A3AFF;
-        }
-
-        .button-primary {
-            padding: 20px 40px 21px;
-            background: #4A3AFF;
-            box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
-            border-radius: 56px;
-
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 20px;
-            text-align: center;
-            color: #FFFFFF;
-        }
-
-        .ic {
-            position: absolute;
-            right: 24px;
-            top: 22px;
-            bottom: 0px;
-            width: 20px;
-            height: 20px;
-        }
-
-        .ic-person {
-            background: url("assets/ic_person.png") no-repeat;
-            background-size: contain;
-        }
-
-        .ic-mail {
-            top: 24px;
-            background: url("assets/ic_mail.png") no-repeat;
-            background-size: contain;
-        }
-
-        .ic-phone {
-            background: url("assets/ic_phone.png") no-repeat;
-            background-size: contain;
-        }
-
-        .ic-building {
-            background: url("assets/ic_building.png") no-repeat;
-            background-size: contain;
-        }
-
-        .pos-relative {
-            position: relative;
-        }
-
-        .error {
-            color: #962DFF !important;
-        }
-
-        .error-message {
-            font-size: 18px;
-            line-height: 20px;
-            float: right;
-        }
-
-        .box-selected {
-            box-sizing: border-box;
-            background: #FFFFFF;
-            border: 2px solid #4A3AFF;
-            box-shadow: 0px 2px 11px rgba(69, 65, 164, 0.06), 0px 4px 10px rgba(31, 37, 89, 0.07);
-            border-radius: 16px;
-            padding: 24px;
-            width: 284px;
-            height: 115px;
-        }
-
-        .box {
-            box-sizing: border-box;
-            background: #FFFFFF;
-            border: 1px solid #EFF0F7;
-            box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
-            border-radius: 16px;
-            padding: 24px;
-            width: 284px;
-            height: 115px;
-        }
-
-        .circle {
-            width: 66.64px;
-            height: 66.64px;
-            background-color: rgba(74, 58, 255, 0.15);
-            border-radius: 100px;
-        }
-
-        .d-block {
-            display: block;
-        }
-
-        .pointer {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
@@ -363,7 +57,62 @@
         })
     }
 
+    /// Hooks
 
+    function useDataStore() {
+        const [data, setData] = React.useState({
+            "value": {
+                'name': '',
+                'phone': '',
+                'email': '',
+                'company': '',
+                'service': 'Development',
+                'budget': '50000'
+            },
+            "error": {},
+            "auto_validate": false
+        })
+
+        function validate(values) {
+            var e = {}
+            e['name'] = validateEmpty(values.name, "Name")
+            e['phone'] = validateEmpty(values.phone, "Phone")
+            if (!e['phone']) {
+                e['phone'] = validatePhone(values.phone)
+            }
+            e['email'] = validateEmpty(values.email, "Email")
+            if (!e['email']) {
+                e['email'] = validateEmail(values.email)
+            }
+            e['company'] = validateEmpty(values.company, "Company")
+
+            return e
+        }
+
+        function updateValue(key, value) {
+            const newData = { ...data, value: { ...data.value, [key]: value } }
+            if (data.auto_validate) {
+                const error = validate(newData.value)
+                newData.error = error
+            }
+            setData(newData)
+        }
+
+        function setAutoValidate() {
+            const newData = { ...data, "auto_validate": true }
+            const error = validate(newData.value)
+
+            newData.error = error
+            setData(newData)
+            return !notEmptyValue(error)
+        }
+
+        function isError() {
+            return notEmptyValue(data.error)
+        }
+
+        return { data, updateValue, setAutoValidate, isError }
+    }
 
     /// Component
 
@@ -388,14 +137,13 @@
         )
     }
 
-
-    function TextField({ onChange, label, hint, icon, error, reff }) {
+    function TextField({ onChange, value, label, hint, icon, error, reff }) {
         return (
             <div className="form-field">
                 <label className={error ? "error" : null}>{label}</label>
                 <br />
                 <div className="pos-relative">
-                    <input type="text" placeholder={hint} onChange={onChange} ref={reff} />
+                    <input type="text" placeholder={hint} value={value} onChange={(e) => onChange(e.target.value)} ref={reff} />
                     <div className={icon} />
                 </div>
                 <br />
@@ -418,6 +166,7 @@
             </div>
         )
     }
+
     function OptionButton({ title, value, selected, onClick }) {
         return (
             <div onClick={() => onClick(value)} className={`${selected == value ? "box-selected" : "box"} flex flex-y-center pointer`}>
@@ -430,7 +179,6 @@
         )
     }
 
-
     function FormTitle({ title, desc }) {
         return (
             <div className="form-title">
@@ -440,153 +188,100 @@
         )
     }
 
-    function Form1({ savedData, dataDelegate, validatorDelegate }) {
+    function Form1({ store, textRef }) {
         const title = "Our services"
         const desc = "Please select which service you are interested in."
-        const [error, setError] = React.useState({})
-        const textRefs = {
-            "name": React.useRef(),
-            "phone": React.useRef(),
-            "email": React.useRef(),
-            "company": React.useRef()
-        }
-        React.useEffect(() => {
-            textRefs.name.current.value = savedData.name ?? ""
-            textRefs.phone.current.value = savedData.phone ?? ""
-            textRefs.email.current.value = savedData.email ?? ""
-            textRefs.company.current.value = savedData.company ?? ""
-            validatorDelegate(validate)
-        }, [])
 
-        function toObject() {
-            return {
-                "name": textRefs.name.current.value,
-                "phone": textRefs.phone.current.value,
-                "email": textRefs.email.current.value,
-                "company": textRefs.company.current.value,
-            };
-        }
+        var refAttached = false
 
-        function handleChange(key, value) {
-            dataDelegate(toObject())
-            const containError = notEmptyValue(error)
-            console.log(containError)
-            if (containError) {
-                validate(false)
-            }
-        }
-
-        function validate(autofocus = true) {
-            var e = {}
-            e['name'] = validateEmpty(textRefs.name.current.value, "Name")
-            e['phone'] = validateEmpty(textRefs.phone.current.value, "Phone")
-            if (!e['phone']) {
-                e['phone'] = validatePhone(textRefs.phone.current.value)
-            }
-            e['email'] = validateEmpty(textRefs.email.current.value, "Email")
-            if (!e['email']) {
-                e['email'] = validateEmail(textRefs.email.current.value)
-            }
-            e['company'] = validateEmpty(textRefs.company.current.value, "Company")
-            setError(e)
-
-            const containError = notEmptyValue(e)
-            if (containError) {
-                if (autofocus) {
-                    if (e['name']) {
-                        textRefs.name.current.focus()
-                    } else if (e['phone']) {
-                        textRefs.phone.current.focus()
-                    } else if (e['email']) {
-                        textRefs.email.current.focus()
-                    } else if (e['company']) {
-                        textRefs.company.current.focus()
-                    }
+        function injectRef(forName) {
+            if (!refAttached) {
+                if (store.data.error[forName]) {
+                    refAttached = true
+                    return textRef
                 }
             }
-            return !containError
+
+            return null
         }
 
         return <>
             <FormTitle title={title} desc={desc} />
 
             <div className="inline-block">
-                <TextField onChange={handleChange} label="Name" hint="Name" icon="ic ic-person" error={error['name']} reff={textRefs.name} />
+                <TextField onChange={(val) => store.updateValue("name", val)} label="Name" hint="Name" icon="ic ic-person" value={store.data.value.name} error={store.data.error.name} reff={injectRef("name")} />
 
                 <div className="space-y-2"></div>
-                <TextField onChange={handleChange} label="Phone Number" hint="Phone Number" icon="ic ic-phone" error={error['phone']} reff={textRefs.phone} />
+                <TextField onChange={(val) => store.updateValue("phone", val)} label="Phone Number" hint="Phone Number" icon="ic ic-phone" value={store.data.value.phone} error={store.data.error.phone} reff={injectRef("phone")} />
 
             </div>
             <div className="inline-block float-right">
-                <TextField onChange={handleChange} label="Email" hint="Email" icon="ic ic-mail" error={error['email']} reff={textRefs.email} />
+                <TextField onChange={(val) => store.updateValue("email", val)} label="Email" hint="Email" icon="ic ic-mail" value={store.data.value.email} error={store.data.error.email} reff={injectRef("email")} />
                 <div className="space-y-2"></div>
-                <TextField onChange={handleChange} label="Company" hint="Company" icon="ic ic-building" error={error['company']} reff={textRefs.company} />
+                <TextField onChange={(val) => store.updateValue("company", val)} label="Company" hint="Company" icon="ic ic-building" value={store.data.value.company} error={store.data.error.company} reff={injectRef("company")} />
             </div>
         </>
     }
-    function Form2({ savedData, dataDelegate }) {
+
+    function Form2({ store }) {
         const title = "Our services"
         const desc = "Please select which service you are interested in."
-        const [data, setData] = React.useState()
 
-        React.useEffect(() => {
-            setData(savedData?.service ?? "Development")
-        }, [])
-
-        function handleChange(value) {
-            setData(value)
-            dataDelegate({ "service": value })
+        function updateValue(value) {
+            console.log(value)
+            store.updateValue("service", value)
+            console.log(store.data.value)
         }
 
         return <>
             <FormTitle title={title} desc={desc} />
 
             <div className="inline-block">
-                <OptionImage title="Development" selected={data} icon="ic_development" onClick={handleChange} />
+                <OptionImage title="Development" selected={store.data.value.service} icon="ic_development" onClick={updateValue} />
                 <div className="space-y-1"></div>
-                <OptionImage title="Marketing" selected={data} icon="ic_marketing" onClick={handleChange} />
+                <OptionImage title="Marketing" selected={store.data.value.service} icon="ic_marketing" onClick={updateValue} />
             </div>
             <div className="inline-block float-right">
-                <OptionImage title="Web Design" selected={data} icon="ic_web_design" onClick={handleChange} />
+                <OptionImage title="Web Design" selected={store.data.value.service} icon="ic_web_design" onClick={updateValue} />
                 <div className="space-y-1"></div>
-                <OptionImage title="Other" selected={data} icon="ic_setting" onClick={handleChange} />
+                <OptionImage title="Other" selected={store.data.value.service} icon="ic_setting" onClick={updateValue} />
             </div>
         </>
     }
 
-    function Form3({ savedData, dataDelegate }) {
+    function Form3({ store }) {
         const title = "What's your project budget?"
         const desc = "Please select the project budget range you have in mind."
-        const [data, setData] = React.useState("50000")
 
-        React.useEffect(() => {
-            setData(savedData?.budget ?? "50000")
-        }, [])
-
-        function handleChange(value) {
-            setData(value)
-            dataDelegate({ "budget": value })
+        function updateValue(value) {
+            store.updateValue("budget", value)
         }
 
         return <>
             <FormTitle title={title} desc={desc} />
 
             <div className="inline-block">
-                <OptionButton title="$5.000 - $10.000" value="5000-10000" selected={data} onClick={handleChange} />
+                <OptionButton title="$5.000 - $10.000" value="5000-10000" selected={store.data.value.budget} onClick={updateValue} />
                 <div className="space-y-1"></div>
-                <OptionButton title="$20.000 - $50.000" value="20000-50000" selected={data} onClick={handleChange} />
+                <OptionButton title="$20.000 - $50.000" value="20000-50000" selected={store.data.value.budget} onClick={updateValue} />
             </div>
             <div className="inline-block float-right">
-                <OptionButton title="$10.000 - $20.000" value="10000-20000" selected={data} onClick={handleChange} />
+                <OptionButton title="$10.000 - $20.000" value="10000-20000" selected={store.data.value.budget} onClick={updateValue} />
                 <div className="space-y-1"></div>
-                <OptionButton title="$50.000 +" value="50000" selected={data} onClick={handleChange} />
+                <OptionButton title="$50.000 +" value="50000" selected={store.data.value.budget} onClick={updateValue} />
             </div>
         </>
     }
 
-    function Form4({ onSubmit }) {
+    function Form4({ store }) {
         const title = "Submit your quote request"
         const desc = "Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours."
+
+
+        function onSubmit() {
+            alert(JSON.stringify(store.data.value));
+        }
+
 
         return (
             <>
@@ -599,35 +294,44 @@
                     <div className="space-x-6"></div>
                 </div>
                 <center>
-                    <button onClick={onSubmit} className="button-primary pointer">Submit</button>
+                    <button onClick={() => onSubmit()} className="button-primary pointer">Submit</button>
                 </center>
             </>
         )
     }
 
-    function MultiForm({ savedData, step, dataDelegate, validatorDelegate, onSubmit }) {
+    function MultiForm({ store, step, textRef }) {
         if (step == 2) {
-            return <Form2 savedData={savedData.current[2]} dataDelegate={dataDelegate} />
+            return <Form2 store={store} />
         }
         if (step == 3) {
-            return <Form3 savedData={savedData.current[3]} dataDelegate={dataDelegate} />
+            return <Form3 store={store} />
         }
         if (step == 4) {
-            return <Form4 onSubmit={onSubmit} />
+            return <Form4 store={store} />
         }
 
-        return <Form1 savedData={savedData.current[1] ?? {}} dataDelegate={dataDelegate} validatorDelegate={validatorDelegate} />
+        return <Form1 store={store} textRef={textRef} />
     }
-
 
     function FormManager() {
         // Step
         const [step, setStep] = React.useState(() => 1)
         const availableSteps = [1, 2, 3, 4];
         const lastStep = availableSteps[availableSteps.length - 1];
-        // Data
-        const data = React.useRef({})
-        const validate = React.useRef(null)
+        const store = useDataStore();
+        const textRef = React.useRef()
+        const focused = React.useRef(false)
+
+        React.useEffect(() => {
+            if (step == 1 && !focused.current) {
+                if (store.isError()) {
+                    textRef.current.focus()
+                    focused.current = true
+                    return
+                }
+            }
+        })
 
         function onBack(e) {
             e.preventDefault()
@@ -639,31 +343,28 @@
 
         function onNext(e) {
             e.preventDefault()
-            if (step == 1 && validate?.current != null) {
-                const isNotValid = !validate.current()
-                if (isNotValid) {
+            if (step == 1) {
+                focused.current = false
+            }
+
+            if (!store.data.auto_validate) {
+                const valid = store.setAutoValidate()
+                console.log(`Is Valid ${valid}`)
+                if (!valid) {
                     return;
                 }
+            }
+            if (store.isError()) {
+                if (step == 1) {
+                    textRef.current.focus()
+                }
+                return
             }
             if (step + 1 > lastStep) {
                 return
             }
             setStep(step + 1);
         }
-
-        function dataDelegate(value) {
-            data.current[step] = value
-            console.log(data.current)
-        }
-
-        function validatorDelegate(validator) {
-            validate.current = validator
-        }
-        function onSubmit() {
-            var result = Object.assign({}, data.current["1"], data.current["2"], data.current["3"])
-            alert(JSON.stringify(result));
-        }
-
 
 
         return (
@@ -688,12 +389,16 @@
                     <div className="space-y-1"></div>
                     <div className="divider"></div>
                     <div className="space-y-1"></div>
-                    <MultiForm savedData={data} step={step} dataDelegate={dataDelegate} validatorDelegate={validatorDelegate} onSubmit={onSubmit} />
+                    <MultiForm store={store} step={step} textRef={textRef} />
                     <div className="space-y-1"></div>
                 </div>
                 <div className="space-y-1"></div>
                 <div>
-                    <button onClick={onBack} className="button-secondary pointer">Previous step</button>
+                    {
+                        step == 1
+                            ? null
+                            : <button onClick={onBack} className="button-secondary pointer">Previous step</button>
+                    }
                     {
                         step == lastStep
                             ? null
