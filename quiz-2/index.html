@@ -104,7 +104,7 @@
 
             newData.error = error
             setData(newData)
-            return !notEmptyValue(error)
+            return notEmptyValue(error) ? error : null
         }
 
         function isError() {
@@ -112,6 +112,28 @@
         }
 
         return { data, updateValue, setAutoValidate, isError }
+    }
+
+    function useFocuser(inputNames, focusWhen) {
+        const inputRefs = {}
+
+        for (let i = 0; i < inputNames.length; i++) {
+            inputRefs[inputNames[i]] = React.useRef()
+        }
+
+        function requestFocus(errors) {
+            console.log(errors)
+            for (const key in inputRefs) {
+                const containError = errors[key]
+                console.log(`Contain Error ${containError} ${key}`)
+                if (containError) {
+                    inputRefs[key].current.focus()
+                    break
+                }
+            }
+        }
+
+        return { requestFocus, inputRefs }
     }
 
     /// Component
@@ -188,37 +210,24 @@
         )
     }
 
-    function Form1({ store, textRef }) {
+    function Form1({ store, inputRefs }) {
         const title = "Our services"
         const desc = "Please select which service you are interested in."
-
-        var refAttached = false
-
-        function injectRef(forName) {
-            if (!refAttached) {
-                if (store.data.error[forName]) {
-                    refAttached = true
-                    return textRef
-                }
-            }
-
-            return null
-        }
 
         return <>
             <FormTitle title={title} desc={desc} />
 
             <div className="inline-block">
-                <TextField onChange={(val) => store.updateValue("name", val)} label="Name" hint="Name" icon="ic ic-person" value={store.data.value.name} error={store.data.error.name} reff={injectRef("name")} />
+                <TextField onChange={(val) => store.updateValue("name", val)} label="Name" hint="Name" icon="ic ic-person" value={store.data.value.name} error={store.data.error.name} reff={inputRefs.name} />
 
                 <div className="space-y-2"></div>
-                <TextField onChange={(val) => store.updateValue("phone", val)} label="Phone Number" hint="Phone Number" icon="ic ic-phone" value={store.data.value.phone} error={store.data.error.phone} reff={injectRef("phone")} />
+                <TextField onChange={(val) => store.updateValue("phone", val)} label="Phone Number" hint="Phone Number" icon="ic ic-phone" value={store.data.value.phone} error={store.data.error.phone} reff={inputRefs.phone} />
 
             </div>
             <div className="inline-block float-right">
-                <TextField onChange={(val) => store.updateValue("email", val)} label="Email" hint="Email" icon="ic ic-mail" value={store.data.value.email} error={store.data.error.email} reff={injectRef("email")} />
+                <TextField onChange={(val) => store.updateValue("email", val)} label="Email" hint="Email" icon="ic ic-mail" value={store.data.value.email} error={store.data.error.email} reff={inputRefs.email} />
                 <div className="space-y-2"></div>
-                <TextField onChange={(val) => store.updateValue("company", val)} label="Company" hint="Company" icon="ic ic-building" value={store.data.value.company} error={store.data.error.company} reff={injectRef("company")} />
+                <TextField onChange={(val) => store.updateValue("company", val)} label="Company" hint="Company" icon="ic ic-building" value={store.data.value.company} error={store.data.error.company} reff={inputRefs.company} />
             </div>
         </>
     }
@@ -228,9 +237,7 @@
         const desc = "Please select which service you are interested in."
 
         function updateValue(value) {
-            console.log(value)
             store.updateValue("service", value)
-            console.log(store.data.value)
         }
 
         return <>
@@ -300,7 +307,7 @@
         )
     }
 
-    function MultiForm({ store, step, textRef }) {
+    function MultiForm({ store, step, inputRefs }) {
         if (step == 2) {
             return <Form2 store={store} />
         }
@@ -311,7 +318,7 @@
             return <Form4 store={store} />
         }
 
-        return <Form1 store={store} textRef={textRef} />
+        return <Form1 store={store} inputRefs={inputRefs} />
     }
 
     function FormManager() {
@@ -320,18 +327,7 @@
         const availableSteps = [1, 2, 3, 4];
         const lastStep = availableSteps[availableSteps.length - 1];
         const store = useDataStore();
-        const textRef = React.useRef()
-        const focused = React.useRef(false)
-
-        React.useEffect(() => {
-            if (step == 1 && !focused.current) {
-                if (store.isError()) {
-                    textRef.current.focus()
-                    focused.current = true
-                    return
-                }
-            }
-        })
+        const { requestFocus, inputRefs } = useFocuser(["name", "phone", "email", "company"])
 
         function onBack(e) {
             e.preventDefault()
@@ -341,25 +337,28 @@
             setStep(step - 1);
         }
 
+
         function onNext(e) {
             e.preventDefault()
-            if (step == 1) {
-                focused.current = false
-            }
 
-            if (!store.data.auto_validate) {
-                const valid = store.setAutoValidate()
-                console.log(`Is Valid ${valid}`)
-                if (!valid) {
+            if (step == 1) {
+                let errors
+                if (!store.data.auto_validate) {
+                    errors = store.setAutoValidate()
+                }
+                if (errors == null) {
+                    errors = store.data.error
+                }
+
+                const mergedError = errors ?? store.data.error
+                requestFocus(mergedError)
+                const containError = notEmptyValue(mergedError)
+                if (containError) {
                     return;
                 }
             }
-            if (store.isError()) {
-                if (step == 1) {
-                    textRef.current.focus()
-                }
-                return
-            }
+
+
             if (step + 1 > lastStep) {
                 return
             }
@@ -389,7 +388,7 @@
                     <div className="space-y-1"></div>
                     <div className="divider"></div>
                     <div className="space-y-1"></div>
-                    <MultiForm store={store} step={step} textRef={textRef} />
+                    <MultiForm store={store} step={step} inputRefs={inputRefs} />
                     <div className="space-y-1"></div>
                 </div>
                 <div className="space-y-1"></div>
