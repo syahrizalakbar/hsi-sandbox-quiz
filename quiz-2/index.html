@@ -114,12 +114,13 @@
         return { data, updateValue, setAutoValidate, isError }
     }
 
-    function useFocuser(inputNames, focusWhen) {
-        const inputRefs = {}
+    function useFocuser(inputRefs) {
+        // const inputRefs = inputRefs
 
-        for (let i = 0; i < inputNames.length; i++) {
-            inputRefs[inputNames[i]] = React.useRef()
-        }
+        // console.log("Use ref generated only once")
+        // for (let i = 0; i < inputNames.length; i++) {
+        //     inputRefs[inputNames[i]] = React.useRef()
+        // }
 
         function requestFocus(errors) {
             console.log(errors)
@@ -327,7 +328,12 @@
         const availableSteps = [1, 2, 3, 4];
         const lastStep = availableSteps[availableSteps.length - 1];
         const store = useDataStore();
-        const { requestFocus, inputRefs } = useFocuser(["name", "phone", "email", "company"])
+        const { requestFocus, inputRefs } = useFocuser({
+            name: React.useRef(),
+            phone: React.useRef(),
+            email: React.useRef(),
+            company: React.useRef(),
+        })
 
         function onBack(e) {
             e.preventDefault()
