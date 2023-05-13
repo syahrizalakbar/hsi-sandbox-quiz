@@ -1,0 +1,36 @@
+.appbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: var(--max-width);
+    margin: 0 auto;
+    height: 100px;
+}
+
+.menu {
+    position: absolute;
+    left: 0;
+}
+
+.menu>button:last-child {
+    margin-right: unset;
+}
+
+.menu>button {
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.buttonActive {
+    background-color: #FF5480 !important;
+    color: white !important;
+
+}
