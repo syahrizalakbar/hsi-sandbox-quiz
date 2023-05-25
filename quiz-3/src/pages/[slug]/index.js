@@ -96,6 +96,12 @@ export async function getStaticProps(ctx) {
 
     const res = await Api.getArticleDetail({ slug: slug })
 
+    if (res.status == 404) {
+        return {
+            notFound: true
+        }
+    }
+
     return {
         props: {
             article: (await res.json()).data
