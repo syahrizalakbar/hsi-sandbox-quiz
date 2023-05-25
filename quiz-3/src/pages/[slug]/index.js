@@ -31,28 +31,19 @@ function Detail({ article }) {
         <Head>
             <title>{article.title}</title>
         </Head>
-        <div className={style.container}>
+        <div className={style.container} style={{ marginBottom: '24px', paddingBottom: '24px' }}>
             <Appbar showMenu={false} />
-            <br />
             <div className='wrapper'>
-                <h2 className={style.detailTitle}>{article.title}</h2>
-                <br />
+                <h2 className={style.detailTitle} style={{ marginBottom: '16px' }}>{article.title}</h2>
                 <p className={style.detailSummary}>{article.summary}</p>
-                <br />
 
                 <PostFooter category={article?.category?.name?.toUpperCase()} author={combineNames([article?.author?.firstName, article?.author?.middleName, article?.author?.lastName]).toUpperCase()} />
             </div>
-            <br />
-            <br />
         </div>
-        <br />
-        <br />
-        <div className='wrapper'>
-            <div className={style.thumbnail}>
-                <Image fill={true} src={article.thumbnail} alt={article.title}></Image>
+        <div className='wrapper' style={{ paddingBottom: '24px' }}>
+            <div className={style.thumbnail} style={{ marginBottom: '24px' }}>
+                <Image fill={true} src={article.thumbnail} alt={article.title} sizes='100%'></Image>
             </div>
-            <br />
-            <br />
             <p className={style.detailContent}>{article.content}</p>
 
             {
@@ -64,14 +55,13 @@ function Detail({ article }) {
                     </div>
                     <div className={style.related}>
                         {
-                            listRelated?.map((x) => {
-                                return <div className={style.relatedItem}>
+                            listRelated.map((x) => {
+                                return <div key={x.id} className={style.relatedItem}>
                                     <div className={style.relatedItemThumbnail}>
-                                        <Image fill={true} src={x.thumbnail} alt={x.title}></Image>
+                                        <Image fill={true} src={x.thumbnail} alt={x.title} sizes='100%'></Image>
                                     </div>
-                                    <br />
-                                    <PostFooter category={x?.category?.name?.toUpperCase()} author={combineNames([x?.author?.firstName, x?.author?.middleName, x?.author?.lastName]).toUpperCase()} />
-                                    <Link href={'/' + x?.slug}>
+                                    <PostFooter category={x.category?.name?.toUpperCase()} author={combineNames([x.author?.firstName, x.author?.middleName, x.author?.lastName]).toUpperCase()} />
+                                    <Link href={'/' + x.slug}>
                                         <h3 className={style.relatedItemTitle}>{x.title}</h3>
                                     </Link>
                                     <p className={style.relatedItemSummary}>{x.summary}</p>
@@ -82,8 +72,6 @@ function Detail({ article }) {
                 </div>
             }
 
-            <br />
-            <br />
         </div>
     </>
 }

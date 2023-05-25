@@ -3,7 +3,7 @@ import style from '@/styles/Blog.module.css'
 
 export default function PostFooter({ author, category }) {
     return (
-        <div>
+        <div style={{ marginTop: '16px' }}>
             <span className={style.by}>BY</span>
             <span>{author}</span>
             <span className={style.in}>IN</span>

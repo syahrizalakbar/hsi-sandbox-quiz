@@ -7,16 +7,16 @@ import Link from 'next/link';
 function Appbar({ sortActive, showMenu = true, ...rest }) {
     const router = useRouter();
 
-    function filter(path) {
-        router.push(`/?sort=${path}`)
+    function sort(path) {
+        router.push(`/?sort=${path}`).then(() => router.reload());
     }
 
     return <div {...rest} className={style.appbar} >
         {
             showMenu &&
             <div className={style.menu}>
-                <button onClick={() => filter('new')} className={sortActive == 'new' ? style.buttonActive : undefined}>New</button>
-                <button onClick={() => filter('popular')} className={sortActive == 'popular' ? style.buttonActive : undefined}>Popular</button>
+                <button onClick={() => sort('new')} className={sortActive == 'new' ? style.buttonActive : undefined}>New</button>
+                <button onClick={() => sort('popular')} className={sortActive == 'popular' ? style.buttonActive : undefined}>Popular</button>
             </div>
         }
 

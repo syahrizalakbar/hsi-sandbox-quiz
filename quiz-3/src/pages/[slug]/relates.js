@@ -2,12 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import style from '@/styles/Blog.module.css'
 import Appbar from '@/components/Appbar'
-import PostFooter from '@/components/PostFooter'
-import combineNames from '@/utils/combine_names'
 import Link from 'next/link'
 import { useState } from 'react'
 import Api from '@/lib/Api'
 import Head from 'next/head'
+
 
 function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) {
 
@@ -30,16 +29,13 @@ function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) 
         <Head>
             <title>Related - {article?.title}</title>
         </Head>
-        <div className={style.container}>
+        <div className={style.container} style={{ marginBottom: '24px', paddingBottom: '24px' }}>
             <Appbar showMenu={false} />
-            <br />
             <div className='wrapper'>
-                <span className={style.relatesDesc}>Related Post List</span>
-                <br />
-                <br />
-                <div className={style.relatesTop}>
+                <span className={style.relatesDesc} >Related Post List</span>
+                <div className={style.relatesTop} style={{ marginTop: '24px' }}>
                     <div className={style.relatesImage}>
-                        <Image fill={true} src={article.thumbnail} alt={article.title}></Image>
+                        <Image fill={true} src={article.thumbnail} alt={article.title} sizes='100%'></Image>
                     </div>
                     <div>
                         <Link href={'/' + article?.slug}>
@@ -48,17 +44,12 @@ function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) 
                         <p className={style.relatesSummary}>{article.summary}</p>
                     </div>
                 </div>
-                <br />
             </div>
-            <br />
-            <br />
         </div>
-        <br />
-        <br />
-        <div className='wrapper'>
+        <div className='wrapper' style={{ marginBottom: '24px' }}>
             {
                 listPost.map((v, i) => {
-                    return <div key={i} className={style.relatesItemContainer}>
+                    return <div key={v.id} className={style.relatesItemContainer}>
                         <div className={style.relatesItemDetail}>
                             <span className={style.relatesItemNumber}>{String(i + 1).padStart(2, '0')}</span>
                             <Link href={'/' + v?.slug}>
@@ -67,14 +58,12 @@ function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) 
                             <p className={style.relatesItemSummary}>{v.summary}</p>
                         </div>
                         <div className={style.relatesItemImage}>
-                            <Image fill={true} src={v.thumbnail} alt={v.title}></Image>
+                            <Image fill={true} src={v.thumbnail} alt={v.title} sizes='100%'></Image>
                         </div>
                     </div>
                 })
             }
         </div>
-        <br />
-        <br />
         {
             canNext && <button onClick={!loadingNext ? () => nextPage() : undefined} className={style.loadmore}>{loadingNext ? 'Loading...' : 'Load More'}</button>
         }

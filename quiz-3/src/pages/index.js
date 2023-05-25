@@ -38,19 +38,14 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
       <div className='wrapper'>
         {
           listPost.map((value, index) => {
-            return <div key={index}>
+            return <div key={value.id} className={style.posts}>
               <div className={style.thumbnail}>
-                <Image fill={true} src={value.thumbnail} alt={value.title}></Image>
+                <Image fill={true} src={value.thumbnail} alt={value.title} sizes='100%'></Image>
               </div>
-              <br />
-              <PostFooter category={value?.category?.name?.toUpperCase()} author={combineNames([value?.author?.firstName, value?.author?.middleName, value?.author?.lastName]).toUpperCase()} />
-              <Link href={'/' + value?.slug}>
+              <PostFooter category={value.category?.name?.toUpperCase()} author={combineNames([value.author?.firstName, value.author?.middleName, value.author?.lastName]).toUpperCase()} />
+              <Link href={'/' + value.slug}>
                 <h1 className={style.title}>{value.title}</h1>
               </Link>
-              <br />
-              <br />
-              <br />
-              <br />
             </div>
           })
         }
