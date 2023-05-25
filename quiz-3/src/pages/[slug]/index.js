@@ -58,7 +58,9 @@ function Detail({ article }) {
                             listRelated.map((x) => {
                                 return <div key={x.id} className={style.relatedItem}>
                                     <div className={style.relatedItemThumbnail}>
-                                        <Image fill={true} src={x.thumbnail} alt={x.title} sizes='100%'></Image>
+                                        <Link href={'/' + x.slug}>
+                                            <Image fill={true} src={x.thumbnail} alt={x.title} sizes='100%'></Image>
+                                        </Link>
                                     </div>
                                     <PostFooter category={x.category?.name?.toUpperCase()} author={combineNames([x.author?.firstName, x.author?.middleName, x.author?.lastName]).toUpperCase()} />
                                     <Link href={'/' + x.slug}>

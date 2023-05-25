@@ -35,7 +35,9 @@ function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) 
                 <span className={style.relatesDesc} >Related Post List</span>
                 <div className={style.relatesTop} style={{ marginTop: '24px' }}>
                     <div className={style.relatesImage}>
-                        <Image fill={true} src={article.thumbnail} alt={article.title} sizes='100%'></Image>
+                        <Link href={'/' + article?.slug}>
+                            <Image fill={true} src={article.thumbnail} alt={article.title} sizes='100%'></Image>
+                        </Link>
                     </div>
                     <div>
                         <Link href={'/' + article?.slug}>
@@ -58,7 +60,9 @@ function DetailRelate({ article, page, perPage, totalPages, listOtherArticle }) 
                             <p className={style.relatesItemSummary}>{v.summary}</p>
                         </div>
                         <div className={style.relatesItemImage}>
-                            <Image fill={true} src={v.thumbnail} alt={v.title} sizes='100%'></Image>
+                            <Link href={'/' + v?.slug}>
+                                <Image fill={true} src={v.thumbnail} alt={v.title} sizes='100%'></Image>
+                            </Link>
                         </div>
                     </div>
                 })

@@ -40,7 +40,9 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
           listPost.map((value, index) => {
             return <div key={value.id} className={style.posts}>
               <div className={style.thumbnail}>
-                <Image fill={true} src={value.thumbnail} alt={value.title} sizes='100%'></Image>
+                <Link href={'/' + value.slug}>
+                  <Image fill={true} src={value.thumbnail} alt={value.title} sizes='100%'></Image>
+                </Link>
               </div>
               <PostFooter category={value.category?.name?.toUpperCase()} author={combineNames([value.author?.firstName, value.author?.middleName, value.author?.lastName]).toUpperCase()} />
               <Link href={'/' + value.slug}>
