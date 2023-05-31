@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Appbar from '@/components/Appbar'
 import style from '@/styles/Blog.module.css'
 import combineNames from '@/utils/combine_names'
@@ -14,7 +14,7 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
   const [canNext, setCanNext] = useState(page < totalPages)
   const [loadingNext, setLoadingNext] = useState(false)
   const [currentPage, setCurrentPage] = useState(page)
-  const [listPost, setListPost] = useState(posts)
+  const [listArticle, setListArticle] = useState([])
 
   async function nextPage() {
     setLoadingNext(true)
@@ -23,8 +23,12 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
     const data = await res.json();
     setCurrentPage(data.meta.pagination.page);
     setCanNext(data.meta.pagination.page < totalPages)
-    setListPost((prev) => [...prev, ...data.data])
+    setListArticle((prev) => [...prev, ...data.data])
   }
+
+  useEffect(() => {
+    setListArticle(posts);
+  }, [posts]);
 
   return (
     <>
@@ -37,7 +41,7 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
       <Appbar sortActive={sort} />
       <div className='wrapper'>
         {
-          listPost.map((value, index) => {
+          listArticle.map((value, index) => {
             return <div key={value.id} className={style.posts}>
               <div className={style.thumbnail}>
                 <Link href={'/' + value.slug}>

@@ -55,18 +55,18 @@ function Detail({ article }) {
                     </div>
                     <div className={style.related}>
                         {
-                            listRelated.map((x) => {
-                                return <div key={x.id} className={style.relatedItem}>
+                            listRelated.map((article) => {
+                                return <div key={article.id} className={style.relatedItem}>
                                     <div className={style.relatedItemThumbnail}>
-                                        <Link href={'/' + x.slug}>
-                                            <Image fill={true} src={x.thumbnail} alt={x.title} sizes='100%'></Image>
+                                        <Link href={'/' + article.slug}>
+                                            <Image fill={true} src={article.thumbnail} alt={article.title} sizes='100%'></Image>
                                         </Link>
                                     </div>
-                                    <PostFooter category={x.category?.name?.toUpperCase()} author={combineNames([x.author?.firstName, x.author?.middleName, x.author?.lastName]).toUpperCase()} />
-                                    <Link href={'/' + x.slug}>
-                                        <h3 className={style.relatedItemTitle}>{x.title}</h3>
+                                    <PostFooter category={article.category?.name?.toUpperCase()} author={combineNames([article.author?.firstName, article.author?.middleName, article.author?.lastName]).toUpperCase()} />
+                                    <Link href={'/' + article.slug}>
+                                        <h3 className={style.relatedItemTitle}>{article.title}</h3>
                                     </Link>
-                                    <p className={style.relatedItemSummary}>{x.summary}</p>
+                                    <p className={style.relatedItemSummary}>{article.summary}</p>
                                 </div>
                             })
                         }
@@ -83,10 +83,10 @@ export default Detail
 export async function getStaticPaths() {
 
     const res = await Api.getArticleList()
-    const data = (await res.json()).data
+    const articles = (await res.json()).data
 
     return {
-        paths: data.map((x) => { return { params: { slug: x.slug } } }),
+        paths: articles.map((article) => { return { params: { slug: article.slug } } }),
         fallback: 'blocking'
     }
 }

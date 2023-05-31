@@ -8,7 +8,7 @@ function Appbar({ sortActive, showMenu = true, ...rest }) {
     const router = useRouter();
 
     function sort(path) {
-        router.push(`/?sort=${path}`).then(() => router.reload());
+        router.push(`/?sort=${path}`);
     }
 
     return <div {...rest} className={style.appbar} >
