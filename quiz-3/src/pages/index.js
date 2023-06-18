@@ -14,7 +14,7 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
   const [canNext, setCanNext] = useState(page < totalPages)
   const [loadingNext, setLoadingNext] = useState(false)
   const [currentPage, setCurrentPage] = useState(page)
-  const [listArticle, setListArticle] = useState([])
+  const [listArticle, setListArticle] = useState(posts)
 
   async function nextPage() {
     setLoadingNext(true)
@@ -29,6 +29,12 @@ export default function Home({ posts, sort, page, perPage, totalPages }) {
   useEffect(() => {
     setListArticle(posts);
   }, [posts]);
+
+  useEffect(() => {
+    setCanNext(page < totalPages)
+    setCurrentPage(page)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
 
   return (
     <>
@@ -71,6 +77,7 @@ export async function getServerSideProps(context) {
 
   const res = await Api.getArticleList({ sort: sort })
   const data = await res.json();
+  console.log("Refresh")
 
   return {
     props: {
