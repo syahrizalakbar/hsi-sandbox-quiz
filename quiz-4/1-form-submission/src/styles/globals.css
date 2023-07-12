@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:ital,wght@0,300;0,400;0,700;1,300&display=swap");
+
+@layer base {
+    html {
+        font-family: 'DM Sans', sans-serif;
+    }
+}
+
+
+.ic {
+    position: absolute;
+    right: 24px;
+    top: 22px;
+    bottom: 0px;
+    width: 20px;
+    height: 20px;
+}
+
+.ic-person {
+    background: url("../../public/assets/ic_person.png") no-repeat;
+    background-size: contain;
+}
+
+.ic-mail {
+    top: 24px;
+    background: url("../../public/assets/ic_mail.png") no-repeat;
+    background-size: contain;
+}
+
+.ic-phone {
+    background: url("../../public/assets/ic_phone.png") no-repeat;
+    background-size: contain;
+}
+
+.ic-building {
+    background: url("../../public/assets/ic_building.png") no-repeat;
+    background-size: contain;
+}
