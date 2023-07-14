@@ -26,6 +26,6 @@
     "noImplicitOverride": true,
     "noImplicitThis": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/data/Api.ts", "src/pages/[slug]/relates.js"],
   "exclude": ["node_modules"]
 }
