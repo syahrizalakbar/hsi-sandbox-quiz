@@ -51,31 +51,31 @@ export default function Index({ sort }: PropsIndex) {
           {query.data?.pages?.map((group, index) => {
             return (
               <Fragment key={index}>
-                {group.data?.map((value, _) => (
-                  <div key={value.id} className="mb-16">
-                    {value.thumbnail && (
+                {group.data?.map((article, _) => (
+                  <div key={article.id} className="mb-16">
+                    {article.thumbnail && (
                       <div className="relative aspect-image">
-                        <Link href={"/" + value.slug}>
+                        <Link href={"/" + article.slug}>
                           <Image
                             fill={true}
-                            src={value.thumbnail}
-                            alt={value.title ?? ""}
+                            src={article.thumbnail}
+                            alt={article.title ?? ""}
                             sizes="100%"
                           ></Image>
                         </Link>
                       </div>
                     )}
                     <PostFooter
-                      category={value.category?.name?.toUpperCase()}
+                      category={article.category?.name?.toUpperCase()}
                       author={combineNames([
-                        value.author?.firstName,
-                        value.author?.middleName,
-                        value.author?.lastName,
+                        article.author?.firstName,
+                        article.author?.middleName,
+                        article.author?.lastName,
                       ]).toUpperCase()}
                     />
-                    <Link href={"/" + value.slug}>
+                    <Link href={"/" + article.slug}>
                       <h1 className="text-2xl font-semibold mt-2 md:mt-4 md:text-4xl ">
-                        {value.title}
+                        {article.title}
                       </h1>
                     </Link>
                   </div>
