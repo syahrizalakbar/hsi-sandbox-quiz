@@ -11,7 +11,7 @@ import Appbar from "@/components/appbar"
 import PostFooter from "@/components/post-footer"
 import { ArticleDetail } from "@/data/models/res-article-detail"
 import { useQuery } from "@tanstack/react-query"
-import ApiError from "@/core/error"
+import ApiError from "@/common/error"
 
 type DetailProps = {
   article: ArticleDetail

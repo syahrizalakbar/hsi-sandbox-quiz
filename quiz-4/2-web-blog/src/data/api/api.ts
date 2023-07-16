@@ -1,4 +1,4 @@
-import ApiError from "@/core/error"
+import ApiError from "@/common/error"
 import { ResArticleDetail } from "../models/res-article-detail"
 import { ResArticles } from "../models/res-articles"
 import { ParamsGetArticleList } from "./api-types"

@@ -12,7 +12,7 @@ import {
   useInfiniteQuery,
   useQuery,
 } from "@tanstack/react-query"
-import ApiError from "@/core/error"
+import ApiError from "@/common/error"
 
 type PropsRelates = {
   slug: string
