@@ -44,11 +44,11 @@ function Detail({ article }: DetailProps) {
               <p className="mt-6 text-lg ">{article.summary}</p>
 
               <PostFooter
-                category={article?.category?.name?.toUpperCase()}
+                category={article.category?.name?.toUpperCase()}
                 author={combineNames([
-                  article?.author?.firstName,
-                  article?.author?.middleName,
-                  article?.author?.lastName,
+                  article.author?.firstName,
+                  article.author?.middleName,
+                  article.author?.lastName,
                 ]).toUpperCase()}
               />
             </div>

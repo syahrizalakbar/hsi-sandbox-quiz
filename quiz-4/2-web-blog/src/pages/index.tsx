@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { Fragment, useMemo } from "react"
+import { useMemo } from "react"
 import Appbar from "@/components/appbar"
 import combineNames from "@/utils/combine_names"
 import PostFooter from "@/components/post-footer"
@@ -37,6 +37,8 @@ export default function Index({ sort }: PropsIndex) {
     cacheTime: Infinity,
   })
 
+  const articles = query.data?.pages.flatMap((page) => page.data)
+
   return (
     <>
       <Head>
@@ -48,39 +50,35 @@ export default function Index({ sort }: PropsIndex) {
       <main className="container max-w-5xl mx-auto p-8">
         <Appbar sortActive={sort} showMenu={true} />
         <div>
-          {query.data?.pages?.map((group, index) => {
+          {articles?.map((article) => {
             return (
-              <Fragment key={index}>
-                {group.data?.map((article, _) => (
-                  <div key={article.id} className="mb-16">
-                    {article.thumbnail && (
-                      <div className="relative aspect-image">
-                        <Link href={"/" + article.slug}>
-                          <Image
-                            fill={true}
-                            src={article.thumbnail}
-                            alt={article.title ?? ""}
-                            sizes="100%"
-                          ></Image>
-                        </Link>
-                      </div>
-                    )}
-                    <PostFooter
-                      category={article.category?.name?.toUpperCase()}
-                      author={combineNames([
-                        article.author?.firstName,
-                        article.author?.middleName,
-                        article.author?.lastName,
-                      ]).toUpperCase()}
-                    />
+              <div key={article?.id} className="mb-16">
+                {article?.thumbnail && (
+                  <div className="relative aspect-image">
                     <Link href={"/" + article.slug}>
-                      <h1 className="text-2xl font-semibold mt-2 md:mt-4 md:text-4xl ">
-                        {article.title}
-                      </h1>
+                      <Image
+                        fill={true}
+                        src={article.thumbnail}
+                        alt={article.title ?? ""}
+                        sizes="100%"
+                      ></Image>
                     </Link>
                   </div>
-                ))}
-              </Fragment>
+                )}
+                <PostFooter
+                  category={article?.category?.name?.toUpperCase()}
+                  author={combineNames([
+                    article?.author?.firstName,
+                    article?.author?.middleName,
+                    article?.author?.lastName,
+                  ]).toUpperCase()}
+                />
+                <Link href={"/" + article?.slug}>
+                  <h1 className="text-2xl font-semibold mt-2 md:mt-4 md:text-4xl ">
+                    {article?.title}
+                  </h1>
+                </Link>
+              </div>
             )
           })}
         </div>

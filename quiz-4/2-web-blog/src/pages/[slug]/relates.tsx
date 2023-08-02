@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
@@ -50,6 +50,10 @@ function DetailRelate({ slug }: PropsRelates) {
     cacheTime: Infinity,
   })
 
+  const relatedArticles = relatedArticleQuery.data?.pages.flatMap(
+    (page) => page.data,
+  )
+
   return (
     <>
       <Head>
@@ -88,42 +92,34 @@ function DetailRelate({ slug }: PropsRelates) {
           </div>
         </div>
         <div className="container max-w-5xl mx-auto p-8">
-          {relatedArticleQuery.data?.pages.map((group, index) => {
+          {relatedArticles?.map((relatedArticle, index) => {
             return (
-              <Fragment key={index}>
-                {group.data?.map((v, index2) => {
-                  return (
-                    <div
-                      key={v.id}
-                      className="flex flex-col-reverse bg-white rounded-lg shadow-lg border-2 mb-4 md:grid md:grid-cols-2"
-                    >
-                      <div className="p-8">
-                        <span>
-                          {String(index * 4 + (index2 + 1)).padStart(2, "0")}
-                        </span>
-                        <Link href={"/" + v?.slug}>
-                          <h2 className="text-2xl font-semibold mt-1">
-                            {v.title}
-                          </h2>
-                        </Link>
-                        <p className="text-gray-500 mt-2 leading-8">
-                          {v.summary}
-                        </p>
-                      </div>
-                      <div className="w-full aspect-image relative">
-                        <Link href={"/" + v?.slug}>
-                          <Image
-                            fill={true}
-                            src={v.thumbnail ?? ""}
-                            alt={v.title ?? ""}
-                            sizes="100%"
-                          ></Image>
-                        </Link>
-                      </div>
-                    </div>
-                  )
-                })}
-              </Fragment>
+              <div
+                key={relatedArticle?.id}
+                className="flex flex-col-reverse bg-white rounded-lg shadow-lg border-2 mb-4 md:grid md:grid-cols-2"
+              >
+                <div className="p-8">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <Link href={"/" + relatedArticle?.slug}>
+                    <h2 className="text-2xl font-semibold mt-1">
+                      {relatedArticle?.title}
+                    </h2>
+                  </Link>
+                  <p className="text-gray-500 mt-2 leading-8">
+                    {relatedArticle?.summary}
+                  </p>
+                </div>
+                <div className="w-full aspect-image relative">
+                  <Link href={"/" + relatedArticle?.slug}>
+                    <Image
+                      fill={true}
+                      src={relatedArticle?.thumbnail ?? ""}
+                      alt={relatedArticle?.title ?? ""}
+                      sizes="100%"
+                    ></Image>
+                  </Link>
+                </div>
+              </div>
             )
           })}
         </div>
