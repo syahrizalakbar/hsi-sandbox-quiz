@@ -1,13 +1,10 @@
 import OptionText from "@/components/button/option-text"
 import FormTitle from "@/components/form/form-title"
 import { Controller, UseFormReturn } from "react-hook-form"
-
-export type InputBudget = {
-  budget: string
-}
+import { ProjectForm } from "./project-quote"
 
 type PropsFormBudget = {
-  form: UseFormReturn<InputBudget>
+  form: UseFormReturn<ProjectForm>
 }
 
 export default function FormBudget({ form }: PropsFormBudget) {

@@ -1,62 +1,52 @@
 import React from "react"
 import StepPoint from "@/components/form/step-point"
-import FormBiodata, { InputBiodata } from "./form-biodata"
+import FormBiodata from "./form-biodata"
 import { useForm } from "react-hook-form"
-import FormService, { InputService } from "./form-service"
-import FormBudget, { InputBudget } from "./form-budget"
+import FormService from "./form-service"
+import FormBudget from "./form-budget"
 import FormConfirm from "./form-confirm"
+
+const availableSteps = [1, 2, 3, 4]
+
+export type ProjectForm = {
+  name: string
+  phone: string
+  email: string
+  company: string
+  service: string
+  budget: string
+}
 
 function ProjectQuote() {
   /// Step
   const [step, setStep] = React.useState(() => 1)
-  const availableSteps = React.useMemo(() => [1, 2, 3, 4], [])
-  const lastStep = React.useMemo(
-    () => availableSteps[availableSteps.length - 1],
-    [availableSteps],
-  )
+  const lastStep = availableSteps[availableSteps.length - 1]
 
   /// Form Data
-  const formBiodata = useForm<InputBiodata>({
-    mode: "onSubmit",
-    reValidateMode: "onChange",
-  })
-  const formService = useForm<InputService>({
+  const formProject = useForm<ProjectForm>({
     mode: "onSubmit",
     reValidateMode: "onChange",
     defaultValues: {
       service: "Development",
-    },
-  })
-  const formBudget = useForm<InputBudget>({
-    mode: "onSubmit",
-    reValidateMode: "onChange",
-    defaultValues: {
       budget: "50000",
     },
   })
-
   /// Navigation Button
-  function onBack(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
+  function onBack() {
     if (step - 1 < 1) {
       return
     }
     setStep(step - 1)
   }
 
-  function onNext(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
-
+  function onNext() {
     if (step == 1) {
-      formBiodata
-        .handleSubmit((_) => {
-          console.log(formBiodata.getValues())
-        })()
-        .then(() => {
-          if (formBiodata.formState.isValid) {
-            setStep(2)
-          }
-        })
+      formProject.handleSubmit((_) => {
+        console.log(formProject.getValues())
+      })()
+      if (formProject.formState.isValid) {
+        setStep(2)
+      }
     } else if (step == 2) {
       setStep(3)
     } else if (step == 3) {
@@ -66,13 +56,7 @@ function ProjectQuote() {
 
   /// Final
   const handleSubmit = () => {
-    alert(
-      JSON.stringify({
-        ...formBiodata.getValues(),
-        ...formService.getValues(),
-        ...formBudget.getValues(),
-      }),
-    )
+    alert(JSON.stringify(formProject.getValues()))
   }
 
   return (
@@ -101,9 +85,9 @@ function ProjectQuote() {
             })}
           </div>
           <div className="w-full my-8 h-0.5 bg-slate-200 rounded-full"></div>
-          {step == 1 && <FormBiodata form={formBiodata} />}
-          {step == 2 && <FormService form={formService} />}
-          {step == 3 && <FormBudget form={formBudget} />}
+          {step == 1 && <FormBiodata form={formProject} />}
+          {step == 2 && <FormService form={formProject} />}
+          {step == 3 && <FormBudget form={formProject} />}
           {step == 4 && <FormConfirm onSubmit={handleSubmit} />}
         </div>
         <div className="flex place-content-between mt-8">

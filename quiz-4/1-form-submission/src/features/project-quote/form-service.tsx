@@ -1,13 +1,10 @@
 import OptionImage from "@/components/button/option-image"
 import FormTitle from "@/components/form/form-title"
 import { Controller, UseFormReturn } from "react-hook-form"
-
-export type InputService = {
-  service: string
-}
+import { ProjectForm } from "./project-quote"
 
 type PropsFormService = {
-  form: UseFormReturn<InputService>
+  form: UseFormReturn<ProjectForm>
 }
 
 export default function FormService({ form }: PropsFormService) {

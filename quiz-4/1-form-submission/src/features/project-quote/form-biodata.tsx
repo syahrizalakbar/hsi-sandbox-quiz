@@ -2,17 +2,11 @@ import { UseFormReturn } from "react-hook-form"
 import FormTitle from "../../components/form/form-title"
 import TextField from "../../components/form/text-field"
 import { patternEmail, patternPhone } from "@/lib/constants"
+import { ProjectForm } from "./project-quote"
 // import { DevTool } from "@hookform/devtools"
 
-export type InputBiodata = {
-  name: string
-  phone: string
-  email: string
-  company: string
-}
-
 type PropsFormBiodata = {
-  form: UseFormReturn<InputBiodata>
+  form: UseFormReturn<ProjectForm>
 }
 
 export default function FormBiodata({ form }: PropsFormBiodata) {
@@ -48,10 +42,18 @@ export default function FormBiodata({ form }: PropsFormBiodata) {
           label="Phone"
           icon="ic ic-phone"
           register={form.register("phone", {
-            required: "Phone is required",
+            required: "Phone number is required",
             pattern: {
               value: patternPhone,
               message: "Phone number is invalid",
+            },
+            minLength: {
+              value: 12,
+              message: "Min 12 characters",
+            },
+            maxLength: {
+              value: 14,
+              message: "Max 14 characters",
             },
           })}
           error={form.formState.errors.phone?.message}
