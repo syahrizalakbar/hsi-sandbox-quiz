@@ -31,6 +31,7 @@ function ProjectQuote() {
       budget: "50000",
     },
   })
+
   /// Navigation Button
   function onBack() {
     if (step - 1 < 1) {
