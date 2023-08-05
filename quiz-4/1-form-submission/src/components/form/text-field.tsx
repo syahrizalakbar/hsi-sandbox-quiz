@@ -4,6 +4,7 @@ type TextFieldProps = {
   label: string
   icon: string
   error?: string
+  placeholder?: string
   register: UseFormRegisterReturn
 }
 
@@ -22,6 +23,7 @@ export default function TextField(props: TextFieldProps) {
       <div className="mt-2 relative">
         <input
           {...props.register}
+          placeholder={props.placeholder}
           className="border rounded-full shadow-sm p-4 h-16 w-full"
           type="text"
         />

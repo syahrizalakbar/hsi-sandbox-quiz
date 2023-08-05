@@ -21,6 +21,7 @@ export default function FormBiodata({ form }: PropsFormBiodata) {
         <TextField
           label="Name"
           icon="ic ic-person"
+          placeholder="Name"
           register={form.register("name", {
             required: "Name is required",
           })}
@@ -29,6 +30,7 @@ export default function FormBiodata({ form }: PropsFormBiodata) {
         <TextField
           label="Email"
           icon="ic ic-mail"
+          placeholder="Email"
           register={form.register("email", {
             required: "Email is required",
             pattern: {
@@ -41,6 +43,7 @@ export default function FormBiodata({ form }: PropsFormBiodata) {
         <TextField
           label="Phone"
           icon="ic ic-phone"
+          placeholder="Phone Number"
           register={form.register("phone", {
             required: "Phone number is required",
             pattern: {
@@ -61,6 +64,7 @@ export default function FormBiodata({ form }: PropsFormBiodata) {
         <TextField
           label="Company"
           icon="ic ic-building"
+          placeholder="Company"
           register={form.register("company", {
             required: "Company is required",
           })}
