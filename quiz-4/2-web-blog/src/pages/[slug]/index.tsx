@@ -21,7 +21,7 @@ function Detail({ article }: DetailProps) {
   const { key, req } = useMemo(
     () =>
       Api.getArticleList({
-        categoryId: article?.category?.id,
+        categoryId: article.category?.id,
         excludedArticleId: article.id,
       }),
     [article],

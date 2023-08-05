@@ -161,8 +161,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     })
     /// Related articles
     const queryArticleRelates = Api.getArticleList({
-      categoryId: article?.data?.category?.id,
-      excludedArticleId: article?.data?.id,
+      categoryId: article.data?.category?.id,
+      excludedArticleId: article.data?.id,
     })
     await queryClient.prefetchInfiniteQuery({
       queryKey: queryArticleRelates.key(),
